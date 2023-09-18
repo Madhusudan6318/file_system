@@ -105,10 +105,10 @@ static sss_status_t read_app_keys_from_file(const char *appkey_file_path, uint8_
     char file_data[1024];
     char *pdata      = &file_data[0];
     bool appkey_flag = false;
-
+    // read file line by line
     while (fgets(pdata, sizeof(file_data), appkey_file)) {
         size_t i = 0, j = 0;
-
+        
         /*Don't need leading spaces*/
         for (i = 0; i < strlen(pdata); i++) {
             char charac = pdata[i];
@@ -134,6 +134,7 @@ static sss_status_t read_app_keys_from_file(const char *appkey_file_path, uint8_
 #if UNSECURE_LOGGING_OF_APP_KEYS
             LOG_I("%s", &pdata[i]);
 #endif
+            // convert string into integer 
             status = convert_string_into_integer_calculate_and_return_len(appkey_flag, &pdata[i], appkey, appkey_len);
             if (status != kStatus_SSS_Success) {
                 if (0 != fclose(appkey_file)) {
