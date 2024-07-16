@@ -1,0 +1,16 @@
+/*add git submudoles in .gitmodule*/ 
+//steps 
+git submodule add  -b develop/2.16.000 ssh://git@bitbucket.sw.nxp.com/simw/ext-freertos-backoffalgorithm.git "ext/freertos/backoffalgorithm"
+git st
+cd ext/freertos/backoffalgorithm/
+git co 262415de296bb55f7a60d223b2c670ec70a873d0
+cd ..
+git st
+git add backoffalgorithm/
+git commit -m "added one submodule"
+
+git diff .gitmodule
+[submodule "ext/freertos/backoffalgorithm"]
+	path = ext/freertos/backoffalgorithm
+	url = ssh://git@bitbucket.sw.nxp.com/simw/ext-freertos-backoffalgorithm.git
+	branch = develop/2.16.000 
